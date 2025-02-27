@@ -15,6 +15,11 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
+      - name: Disable BuildKit
+        run: |
+          export DOCKER_BUILDKIT=0
+          export DOCKER_CLI_EXPERIMENTAL=disabled
+      
       - name: Build, tag, and push image to DockerHub
         env:
           DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
